@@ -3,11 +3,17 @@
 #include<map>
 #include<string>
 #include<fstream>
+#include<stdlib.h>
+#include<cstring>
+#include<ctype.h>
 using namespace std;
 
 int main(){
 	map<string,string> M;
-	
+	map<string,string> AD;
+	map<string,string> DL;
+	map<string, string>::iterator it; 	
+
 	//---------------------Mnemonics-------------------------
 	M.insert(pair<string, string>("stop", "00"));
 	M.insert(pair<string, string>("add", "01"));
@@ -22,47 +28,77 @@ int main(){
 	M.insert(pair<string, string>("print","10"));
 	
 	//---------------------Assembly Directives-----------------
-	M.insert(pair<string, string>("start", "01"));
-	M.insert(pair<string, string>("end", "02"));
-	M.insert(pair<string, string>("origin", "03"));
-	M.insert(pair<string, string>("equ", "04"));
-	M.insert(pair<string, string>("ltorg", "05"));
+	AD.insert(pair<string, string>("start", "01"));
+	AD.insert(pair<string, string>("end", "02"));
+	AD.insert(pair<string, string>("origin", "03"));
+	AD.insert(pair<string, string>("equ", "04"));
+	AD.insert(pair<string, string>("ltorg", "05"));
 	
 	//---------------------Declarative Statements--------------
-	M.insert(pair<string, string>("dc", "01"));
-	M.insert(pair<string, string>("ds", "02"));
+	DL.insert(pair<string, string>("dc", "01"));
+	DL.insert(pair<string, string>("ds", "02"));
 
 
 	//.insert(pair<string, string>("equ", "00"));  	
-	map<string, string>::iterator itr; 
-	 	
 	
-   	cout << "\tKEY\tELEMENT\n"; 
-    	for (itr = M.begin(); itr != M.end(); ++itr) { 
-        	cout << '\t' << itr->first << '\t' << itr->second << '\n'; 
-    	}
-
-
 	//----------------Reading the Assembly Program file--------
 	
-	fstream file; 
-    	string word,line, t, q, filename; 
- 
-    	// opening file 
-    	file.open("Assembly.txt");
-	while(getline(file,line))
-	{
-		cout<<line<<"\n";
+	FILE *file; 
+    string word,line, t, q, filename; 
+ 	char label[10],opcode[10],operand[10];
+ 	int start,lc=0,bit=0;    	
+ 	    	// opening file 
+    file=fopen("Assembly.txt","r");
+while(fscanf(file,"%s%s%s",label,opcode,operand)==1){
+	if(strcmp(label,"start")==0 && atoi(opcode) && !bit)
+	{	
+		start = atoi(opcode);
+		string label1 = label;
+		it = AD.find(label1);
+		cout<<"[ AD , "<<it->second<<" ]";
+		lc=start;
+		bit=1;
+
 	}
-  
-    	// extracting words from the file
-	cout<<"--------------------------------------------"; 
-	file.clear();	
-	file.seekg(0,ios::beg);    	
-	while (file >> word) 
-    	{  
-        	cout << word << endl; 
-    	} 
-	
+	if(bit){
+		{
+			cout<<label<<" "<<opcode<<" "<<operand;
+		}
+	}
+}
+	/*file>>word;	
+	if(word == "start"){
+		it = AD.find(word);
+		cout<<"[ AD , "<<it->second<<" ]";
+		file.clear();	
+		file.seekg(0,ios::beg);	
+		while(!file.eof()){					
+			while(file>>word)
+			{	
+				//char *token = strtok(str, " ");
+					if(word==" " or word==","){
+						continue;
+					}else{
+						
+						if(AD.count(word)){
+							it = AD.find(word);
+							cout<<"[ AD , "<<it->second<<" ]";							
+						}else if(M.count(word)){
+							it = M.find(word);
+							cout<<"[ IS , "<<it->second<<" ]";						
+						}else if(DL.count(word)){
+							it = DL.find(word);
+							cout<<"[ DL , "<<it->second<<" ]";
+						}
+					}	
+				
+				
+			}
+		}
+	}else{	
+		cout<<"Error, Must be Start with 'START'";
+	}*/
+
+	fclose(file);
 	return 0; 
 }
