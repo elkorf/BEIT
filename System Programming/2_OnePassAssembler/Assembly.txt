@@ -1,0 +1,15 @@
+start 100
+mover areg,a
+print b
+add breg,='9'
+sub breg,d
+comp creg,='23'
+ltorg
+a ds 3
+label:equ a
+origin 500
+l1:mult creg,='7'
+b dc 10
+movem creg,='7'
+d dc 8
+end
