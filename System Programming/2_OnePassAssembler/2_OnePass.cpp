@@ -3,11 +3,18 @@
 #include<map>
 #include<string>
 #include<fstream>
-#include<stdlib.h>
+#include<bits/stdc++.h>
 #include<cstring>
 #include<ctype.h>
 using namespace std;
+struct symbolTable{
+	int id,add,len;
+	string name;	
+}s[10];
 
+int isliteral(string word){
+	return 0;
+}
 int main(){
 	map<string,string> M;
 	map<string,string> AD;
@@ -43,62 +50,66 @@ int main(){
 	
 	//----------------Reading the Assembly Program file--------
 	
-	FILE *file; 
-    string word,line, t, q, filename; 
- 	char label[10],opcode[10],operand[10];
- 	int start,lc=0,bit=0;    	
- 	    	// opening file 
-    file=fopen("Assembly.txt","r");
-while(fscanf(file,"%s%s%s",label,opcode,operand)==1){
-	if(strcmp(label,"start")==0 && atoi(opcode) && !bit)
-	{	
-		start = atoi(opcode);
-		string label1 = label;
-		it = AD.find(label1);
-		cout<<"[ AD , "<<it->second<<" ]";
-		lc=start;
-		bit=1;
-
-	}
-	if(bit){
-		{
-			cout<<label<<" "<<opcode<<" "<<operand;
-		}
-	}
-}
-	/*file>>word;	
+	fstream file; 
+	int lc=0;
+    	string word,line, t, q, filename; 
+ 
+    	// opening file 
+    	file.open("Assembly.txt");
+	file.clear();	
+	file.seekg(0,ios::beg);	
+	file>>word;	
 	if(word == "start"){
 		it = AD.find(word);
-		cout<<"[ AD , "<<it->second<<" ]";
+		cout<<"[ AD , "<<it->second<<" ]"<<endl;
+		file>>word;
+		if(istringstream(word)>>lc){
+			 //istringstream(word)>>lc;
+			 cout<<"lc --> "<<lc<<endl;	
+		}else{
+			cout<<"Address must be present after start.";
+		}
 		file.clear();	
-		file.seekg(0,ios::beg);	
+		file.seekg(1,ios::beg);	
 		while(!file.eof()){					
-			while(file>>word)
+			while(getline(file,line))
 			{	
-				//char *token = strtok(str, " ");
-					if(word==" " or word==","){
-						continue;
+				istringstream ss(line);
+				do {  
+        				ss >> word;
+        				//cout<<word<<"\t\t"; 
+					if(AD.count(word)){
+						it = AD.find(word);
+						cout<<"[ AD , "<<it->second<<"]";							
+					}else if(M.count(word)){
+						it = M.find(word);
+						cout<<"[ IS , "<<it->second<<" ]";						
+					}else if(DL.count(word)){
+						it = DL.find(word);
+						cout<<"[ DL , "<<it->second<<" ]";
+					}else if(isliteral(word)){
+						//cout<<"ok";
 					}else{
-						
-						if(AD.count(word)){
-							it = AD.find(word);
-							cout<<"[ AD , "<<it->second<<" ]";							
-						}else if(M.count(word)){
-							it = M.find(word);
-							cout<<"[ IS , "<<it->second<<" ]";						
-						}else if(DL.count(word)){
-							it = DL.find(word);
-							cout<<"[ DL , "<<it->second<<" ]";
-						}
-					}	
-				
-				
+						//symbolTable *s;
+						s->id=1;
+						s->name=word;
+						s->len=word.size();
+						s->add=lc;	
+						//add into symbol table
+							
+					}
+				}while (ss);
+				cout<<endl; 
 			}
+				 
 		}
 	}else{	
 		cout<<"Error, Must be Start with 'START'";
-	}*/
-
-	fclose(file);
+	}
+	
+	for(int i=0;i<10;i++){
+		cout<<s->name<<endl;
+	}
+	file.close();
 	return 0; 
 }
