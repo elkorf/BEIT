@@ -26,6 +26,7 @@ struct LiteralTable{
 struct PoolTable{
 	int id;
 }poolT[20];
+
 int isliteral(char *word){
 	if(word[0]==61)
 		return 1;
@@ -71,7 +72,7 @@ int main(){
 	//----------------Reading the Assembly Program file--------
 	
 	fstream file,symbolFile,literalFile,incFile,poolFile,outputFile; 
-	int lc=0,count,l=0,ins=0,i=0,s=0,no,symFlag=-1,equ=0,litFlag=0,pool=0,tpool=0;
+	int lc=0,count,l=0,ins=0,i=0,s=0,no,symFlag=-1,equ=0,litFlag=0,pool=0,tpool=0,litno=1;
     	string line,filename,word1,word2; 
     	char *word;
  	queue <string> q;
@@ -167,14 +168,8 @@ int main(){
 						q.push(word);
 						inc[ins].name=word;
 						inc[ins++].address=lc;
-						/*int j=0;
-						queue<string> q1 = q;
-						while(!q1.empty()){
-							if(q1.front() == word){	
-							}
-							q1.pop();
-							j++;
-						}*/	
+							outputFile<<"[ L , "<<litno<<" ]";
+							cout<<"[ L , "<<litno++<<" ]";		
 					}else if(istringstream(word)>>no){
 							outputFile<<"[ C , "<<no<<" ]";
 							cout<<"[ C , "<<no<<" ]";
@@ -189,6 +184,7 @@ int main(){
 									}	
 								}
 								if(symFlag==-1){
+									symbolFile.open("Symbol.txt",fstream::in | fstream::out);							
 									inc[ins].name=word;
 									inc[ins].address=lc;
 									outputFile<<"[ S , "<<ins<<" ]";
@@ -263,5 +259,53 @@ int main(){
 	symbolFile.close();
 	literalFile.close();
 	file.close();
+
+//-----------------------------Pass II code-----------------------------------------------
+	fstream passI,targetFile;
+	passI.open("Output.txt",fstream::in | fstream::out);
+	targetFile.open("Target.txt",fstream::in | fstream::out);
+	cout<<"\nTarget Code   : "<<endl;
+	while(!passI.eof()){					
+		while(getline(passI,line))
+		{	
+			int len=line.length();
+			char s1[len+1];
+			strcpy(s1,line.c_str());
+			word = strtok(s1," ,[]");
+			while(word){	
+				if(strcmp(word,"AD")==0){
+					cout<<" ";
+				}else if(strcmp(word,"IS")==0){
+					cout<<" ";	
+				}else if(strcmp(word,"S")==0){
+					word = strtok(0," ,[]");
+					istringstream(word) >> no;
+					cout<<sym[no].address<<" ";
+				}else if(strcmp(word,"L")==0){
+					word = strtok(0," ,[]");
+					istringstream(word) >> no;
+					cout<<lit[no].address<<" ";
+				}else if(strcmp(word,"DL")==0){
+					word = strtok(0," ,[]");
+					if(word=="02"){
+						word = strtok(s1," ,[]");
+						cout<<" "<<word<<" ";	
+					}		
+				}else if(strcmp(word,"C")==0){
+					word = strtok(0," ,[]");
+					istringstream(word) >> no;
+					cout<<no<<" ";
+				}else{
+					
+				}
+				
+				word=strtok(0," ,[]");
+			}
+			cout<<endl;
+
+		}
+	}			
+	passI.close();
+	targetFile.close();
 	return 0; 
 }
