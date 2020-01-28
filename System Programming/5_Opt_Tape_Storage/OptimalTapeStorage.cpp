@@ -46,14 +46,16 @@ void dispElements(int *elements,int noE){
 
 void optimalTape(int *elements,int noE,int *sizeTape,int noTape){
 	int add=0,i=0,j=0;		
-	do{
+	while(j<noTape){
 		cout<<"\n----------------Tape "<<j+1<<"-----------------"<<endl;
-		while(add<sizeTape[j]){
-			add += elements[i];
-			cout<<elements[i++]<<"\t";	
+		cout<<"Size  : "<<sizeTape[j]<<endl;
+		add += elements[i];	
+		while(add <= sizeTape[j]){
+			cout<<elements[i++]<<"\t";			
+			add += elements[i];	
 		}
-		//add=0;		
+		add=0;		
 		j++;
-	}while(j!=noTape);	
+	}
 }
 
