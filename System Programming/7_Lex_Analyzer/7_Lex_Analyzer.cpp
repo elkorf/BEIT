@@ -3,6 +3,8 @@
 #include<string>
 #include<fstream>
 #include<cstring>
+#include<vector>
+#include<ctype.h>
 using namespace std;
 
 struct UST{
@@ -26,21 +28,36 @@ struct LT{
 	string token;
 };
 
+void createTables(vector<string>w){
+	vector<string>::iterator it,ti;
+	string keywords[] = {"main()","int","{","}"};
+	int len=sizeof(keywords)/sizeof(keywords[0]);
+	vector<string> terminals(keywords, keywords+len);
+	for(it=w.begin();it!=w.end();it++){
+		if(ti = find(terminals.begin(), terminals.end(),*it)){
+			cout<<"found at : "<<ti - keywords.begin();
+		} 
+	}
+}
+
 int main(){
-	string line;
-	char *word;
+	char c;
+	string word;
+	vector<string> w;
+	vector<string> ::iterator it;
+	int i=0;
 	fstream file;
 	file.open("Input.c",ios::in);
-	while(getline(file,line)){
-		int len = line.length();
-		char w[len+1];
-		strcpy(w,line.c_str());
-		word = strtok(w," ();");		
-		while(word){
-			cout<<word<<"\n";
-			word=strtok(0," ();");
-		}	
-	}	
+	while(!file.eof()){
+		c=file.get();		
+		if(c==' '){
+			w.push_back(word);
+			word.clear();
+		}
+		word.push_back(c);			
+	}
+	w.push_back(word); 
 	file.close();		
+	createTables(w);
 	return 0;
 }
