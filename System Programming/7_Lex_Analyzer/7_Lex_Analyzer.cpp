@@ -33,11 +33,11 @@ void createTables(vector<string>w){
 	string keywords[] = {"main()","int","{","}"};
 	int len=sizeof(keywords)/sizeof(keywords[0]);
 	vector<string> terminals(keywords, keywords+len);
-	for(it=w.begin();it!=w.end();it++){
+	/*for(it=w.begin();it!=w.end();it++){
 		if(ti = find(terminals.begin(), terminals.end(),*it)){
 			cout<<"found at : "<<ti - keywords.begin();
 		} 
-	}
+	}*/
 }
 
 int main(){
@@ -47,17 +47,30 @@ int main(){
 	vector<string> ::iterator it;
 	int i=0;
 	fstream file;
-	file.open("Input.c",ios::in);
+	file.open("input.c",ios::in);
 	while(!file.eof()){
 		c=file.get();		
-		if(c==' '){
+		if(c==' ' or c=='"' or c=='\n'){
 			w.push_back(word);
 			word.clear();
-		}
-		word.push_back(c);			
+		}else if(c=='{' or c=='}' or c=='(' or c==')'){
+			if(word.empty()==false){
+				w.push_back(word);
+				word.clear();
+			}
+			string s(1,c);
+			w.push_back(s);
+			
+		}else{
+			word.push_back(c);
+		}			
 	}
 	w.push_back(word); 
-	file.close();		
+	for(auto i=w.begin();i!=w.end();++i){
+		cout<<*i<<" ";
+	}
+	file.close();
+	cout<<w.size();	
 	createTables(w);
 	return 0;
 }
