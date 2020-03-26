@@ -1,0 +1,74 @@
+C:\Users\elkorf\Desktop\SL6\5>python 5.py
+-----------------HEAD--------------------
+   Page total likes    Type  Category  Post Month  Post Weekday  ...  Lifetime People who have liked your Page and engaged with your post  comment    like  share  Total Interactions
+0            139441   Photo         2          12             4  ...                                                119                          4    79.0   17.0                 100
+1            139441  Status         2          12             3  ...                                               1108                          5   130.0   29.0                 164
+2            139441   Photo         3          12             3  ...                                                132                          0    66.0   14.0                  80
+3            139441   Photo         2          12             2  ...                                               1386                         58  1572.0  147.0                1777
+4            139441   Photo         2          12             2  ...                                                396                         19   325.0   49.0                 393
+
+[5 rows x 19 columns]
+------------------DESC--------------------
+       Page total likes    Category  Post Month  Post Weekday  ...    comment         like       share  Total Interactions
+count        500.000000  500.000000  500.000000    500.000000  ...  500.00000   499.000000  496.000000          500.000000
+mean      123194.176000    1.880000    7.038000      4.150000  ...    7.48200   177.945892   27.266129          212.120000
+std        16272.813214    0.852675    3.307936      2.030701  ...   21.18091   323.398742   42.613292          380.233118
+min        81370.000000    1.000000    1.000000      1.000000  ...    0.00000     0.000000    0.000000            0.000000
+25%       112676.000000    1.000000    4.000000      2.000000  ...    1.00000    56.500000   10.000000           71.000000
+50%       129600.000000    2.000000    7.000000      4.000000  ...    3.00000   101.000000   19.000000          123.500000
+75%       136393.000000    3.000000   10.000000      6.000000  ...    7.00000   187.500000   32.250000          228.500000
+max       139441.000000    3.000000   12.000000      7.000000  ...  372.00000  5172.000000  790.000000         6334.000000
+
+[8 rows x 18 columns]
+-------------SORTED DATA----------------
+     Page total likes   Type  Category  Post Month  Post Weekday  ...  Lifetime People who have liked your Page and engaged with your post  comment   like  share  Total Interactions
+441             98195  Photo         1           3             5  ...                                                  9                          0    0.0    0.0                   0
+21             138414  Photo         1          12             7  ...                                                 15                          0    0.0    0.0                   0
+436            100732  Photo         1           3             6  ...                                                705                         16  127.0    0.0                 143
+431            100732  Photo         1           3             7  ...                                                200                          0    4.0    0.0                   4
+117            136642  Photo         1          10             7  ...                                                262                          0    7.0    0.0                   7
+
+[5 rows x 19 columns]
+-----------SUBSET (TYPE, COMMENT, LIKE, SHARE)--------
+     Type  comment    like  share
+0   Photo        4    79.0   17.0
+1  Status        5   130.0   29.0
+2   Photo        0    66.0   14.0
+3   Photo       58  1572.0  147.0
+4   Photo       19   325.0   49.0
+
+------------SUBSET (TYPE, COMMENT, LIKE, SHARE) WITH CONDTION AT LEAST 100 LIKES-------
+       Type  comment    like  share
+1    Status        5   130.0   29.0
+3     Photo       58  1572.0  147.0
+4     Photo       19   325.0   49.0
+5    Status        1   152.0   33.0
+6     Photo        3   249.0   27.0
+..      ...      ...     ...    ...
+488   Photo       21   277.0   80.0
+491   Photo        1   105.0   46.0
+492    Link        0   128.0    9.0
+493   Photo       17   185.0   55.0
+494   Photo       10   125.0   41.0
+
+[252 rows x 4 columns]
+----------SUBSET (TYPE, COMMENT, LIKE, SHARE) WITH CONDTION AT LEAST 50 LIKES COMMENTS AND SHARES--------
+       Type  comment    like  share
+3     Photo       58  1572.0  147.0
+142  Status       60   859.0   90.0
+168   Photo      144  1622.0  208.0
+244   Photo      372  5172.0  790.0
+379   Photo       51  1998.0  128.0
+460   Photo      146  1546.0  181.0
+480   Photo       56   360.0   99.0
+
+-----------------------------SUBSET (TYPE, COMMENT, LIKE, SHARE) SUM----------------------------
+[88795.0, 3741, 13524.0]
+5.py:53: MatplotlibDeprecationWarning: Passing the block parameter of show() positionally is deprecated since Matplotlib 3.1; the parameter will become keyword-only in 3.3.
+  plt.show(hist)
+5.py:61: MatplotlibDeprecationWarning: Passing the block parameter of show() positionally is deprecated since Matplotlib 3.1; the parameter will become keyword-only in 3.3.
+  plt.show(graph)
+5.py:68: MatplotlibDeprecationWarning: Passing the block parameter of show() positionally is deprecated since Matplotlib 3.1; the parameter will become keyword-only in 3.3.
+  plt.show(graph)
+5.py:76: MatplotlibDeprecationWarning: Passing the block parameter of show() positionally is deprecated since Matplotlib 3.1; the parameter will become keyword-only in 3.3.
+  plt.show(graph)
