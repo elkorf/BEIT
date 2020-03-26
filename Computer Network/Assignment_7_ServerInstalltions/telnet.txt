@@ -1,0 +1,143 @@
+root@elkorf:/home/elkorf# sudo apt-get install xinetd telnetd
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+The following additional packages will be installed:
+  libfile-copy-recursive-perl update-inetd
+The following NEW packages will be installed:
+  libfile-copy-recursive-perl telnetd update-inetd xinetd
+0 upgraded, 4 newly installed, 0 to remove and 155 not upgraded.
+Need to get 182 kB of archives.
+After this operation, 540 kB of additional disk space will be used.
+Do you want to continue? [Y/n] y
+Get:1 http://archive.ubuntu.com/ubuntu bionic/main amd64 libfile-copy-recursive-perl all 0.40-1 [16.9 kB]
+Get:2 http://archive.ubuntu.com/ubuntu bionic/universe amd64 xinetd amd64 1:2.3.15.3-1 [108 kB]
+Get:3 http://archive.ubuntu.com/ubuntu bionic/universe amd64 telnetd amd64 0.17-41 [39.3 kB]
+Get:4 http://archive.ubuntu.com/ubuntu bionic/main amd64 update-inetd all 4.44 [18.1 kB]
+Fetched 182 kB in 2s (74.1 kB/s)
+Preconfiguring packages ...
+Selecting previously unselected package libfile-copy-recursive-perl.
+(Reading database ... 53207 files and directories currently installed.)
+Preparing to unpack .../libfile-copy-recursive-perl_0.40-1_all.deb ...
+Unpacking libfile-copy-recursive-perl (0.40-1) ...
+Selecting previously unselected package xinetd.
+Preparing to unpack .../xinetd_1%3a2.3.15.3-1_amd64.deb ...
+Unpacking xinetd (1:2.3.15.3-1) ...
+Selecting previously unselected package telnetd.
+Preparing to unpack .../telnetd_0.17-41_amd64.deb ...
+Unpacking telnetd (0.17-41) ...
+Selecting previously unselected package update-inetd.
+Preparing to unpack .../update-inetd_4.44_all.deb ...
+Unpacking update-inetd (4.44) ...
+Setting up xinetd (1:2.3.15.3-1) ...
+invoke-rc.d: could not determine current runlevel
+Processing triggers for ureadahead (0.100.0-21) ...
+Setting up telnetd (0.17-41) ...
+Adding user telnetd to group utmp
+invoke-rc.d: could not determine current runlevel
+Note: xinetd currently is not fully supported by update-inetd.
+      Please consult /usr/share/doc/xinetd/README.Debian and itox(8).
+invoke-rc.d: could not determine current runlevel
+Processing triggers for systemd (237-3ubuntu10.21) ...
+Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
+Setting up libfile-copy-recursive-perl (0.40-1) ...
+Setting up update-inetd (4.44) ...
+root@elkorf:/home/elkorf# nano /etc/inetd.conf
+root@elkorf:/home/elkorf# ls
+Practice  SL6
+root@elkorf:/home/elkorf# cd /
+root@elkorf:/# ls
+bin  boot  dev  etc  home  init  lib  lib64  media  mnt  opt  proc  root  run  sbin  snap  srv  sys  tmp  usr  var
+root@elkorf:/# cd etc
+root@elkorf:/etc# ls
+NetworkManager          dictionaries-common  ld.so.conf           os-release               services
+X11                     dnsmasq.d            ld.so.conf.d         overlayroot.conf         shadow
+acpi                    dnsmasq.d-available  ldap                 overlayroot.local.conf   shadow-
+adduser.conf            dpkg                 legal                pam.conf                 shells
+alternatives            ec2_version          lftp.conf            pam.d                    skel
+apm                     emacs                libaudit.conf        passwd                   sos.conf
+apparmor                environment          locale.alias         passwd-                  ssh
+apparmor.d              ethertypes           locale.gen           perl                     ssl
+apport                  fonts                localtime            pm                       subgid
+apt                     fstab                logcheck             polkit-1                 subgid-
+at.deny                 fuse.conf            login.defs           pollinate                subuid
+bash.bashrc             gai.conf             logrotate.conf       popularity-contest.conf  subuid-
+bash_completion         glvnd                logrotate.d          profile                  sudoers
+bash_completion.d       groff                lsb-release          profile.d                sudoers.d
+bindresvport.blacklist  group                ltrace.conf          protocols                sysctl.conf
+binfmt.d                group-               lvm                  pulse                    sysctl.d
+byobu                   gshadow              machine-id           python3                  systemd
+ca-certificates         gshadow-             magic                python3.6                terminfo
+ca-certificates.conf    gss                  magic.mime           rc0.d                    timezone
+calendar                gtk-3.0              mailcap              rc1.d                    tmpfiles.d
+cloud                   hdparm.conf          mailcap.order        rc2.d                    ucf.conf
+console-setup           host.conf            manpath.config       rc3.d                    udev
+cron.d                  hostname             mdadm                rc4.d                    ufw
+cron.daily              hosts                mime.types           rc5.d                    update-manager
+cron.hourly             hosts.allow          mke2fs.conf          rc6.d                    update-motd.d
+cron.monthly            hosts.deny           modprobe.d           rcS.d                    update-notifier
+cron.weekly             init.d               modules              resolv.conf              updatedb.conf
+crontab                 initramfs-tools      modules-load.d       rmt                      vim
+cryptsetup-initramfs    inputrc              mtab                 rpc                      vmware-tools
+crypttab                iproute2             nanorc               rsyslog.conf             vtrgb
+dbus-1                  iscsi                netplan              rsyslog.d                wgetrc
+debconf.conf            issue                network              screenrc                 xdg
+debian_version          issue.net            networkd-dispatcher  securetty                xinetd.conf
+default                 kernel               networks             security                 xinetd.d
+deluser.conf            kernel-img.conf      newt                 selinux                  zsh_command_not_found
+depmod.d                landscape            nsswitch.conf        sensors.d
+dhcp                    ld.so.cache          opt                  sensors3.conf
+root@elkorf:/etc# nano inetd.conf
+root@elkorf:/etc# nano inetd.conf
+root@elkorf:/etc# nano inetd.conf
+root@elkorf:/etc# nano xinetd.conf
+root@elkorf:/etc# nano services
+root@elkorf:/etc# nano etc/xinetd.d/telnet
+root@elkorf:/etc# nano xinetd.d/telnet
+root@elkorf:/etc# sudo /etc/init.d/xinetd restart
+ * Stopping internet superserver xinetd                                                                          [ OK ]
+ * Starting internet superserver xinetd                                                                          [ OK ]
+root@elkorf:/etc# telnet 192..168.43.227
+telnet: could not resolve 192..168.43.227/telnet: Name or service not known
+root@elkorf:/etc# telnet
+telnet> ifconfig
+?Invalid command
+telnet> exit
+?Invalid command
+telnet> ^C
+root@elkorf:/etc# ifconfig
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 1500
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0xfe<compat,link,site,host>
+        loop  (Local Loopback)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+wifi0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.43.182  netmask 255.255.255.0  broadcast 192.168.43.255
+        inet6 2409:4042:2790:9f22:40d3:a7:965b:bf35  prefixlen 64  scopeid 0x0<global>
+        inet6 2409:4042:2790:9f22:2c11:e09:a1f6:5e0e  prefixlen 128  scopeid 0x0<global>
+        inet6 fe80::40d3:a7:965b:bf35  prefixlen 64  scopeid 0xfd<compat,link,site,host>
+        ether e4:02:9b:d2:3a:2a  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+wifi2: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.137.1  netmask 255.255.255.0  broadcast 192.168.137.255
+        inet6 fe80::78b4:9d09:592b:b6df  prefixlen 64  scopeid 0xfd<compat,link,site,host>
+        ether e6:02:9b:d2:3a:2a  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+root@elkorf:/etc# telnet 192.168.137.1
+Trying 192.168.137.1...
+Connected to 192.168.137.1.
+Escape character is '^]'.
+Connection closed by foreign host.
+root@elkorf:/etc#
