@@ -74,7 +74,7 @@ int main(){
 	vector<string> ::iterator it;
 	int i=0;
 	fstream file;
-	file.open("Input.c",ios::in);
+	file.open("input.c",ios::in);
 	while(!file.eof()){
 		c=file.get();		
 		if(c==' ' or c=='"' or c=='\n' or c=='\t' or c=='='){
