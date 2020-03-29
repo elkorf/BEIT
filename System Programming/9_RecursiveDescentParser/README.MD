@@ -1,13 +1,11 @@
 Program 	: Recursive Descent Parser
 
 Given Grammer:
-
 	declare -> Type var;
 	Type 	-> int | float | char
 	var	-> id,var | id	
 
 INPUT: 
-      
       	1. int a;
 	2. int a1,s3;
 	3. float qw1,123;
